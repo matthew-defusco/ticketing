@@ -1,5 +1,0 @@
-{
-  "yaml.schemas": {
-    "kubernetes://schema/apps/v1%40deployment": "file:///Users/matthewdefusco/udemy-courses/microservices/ticketing-app/infra/k8s/tickets-depl.yaml"
-  }
-}

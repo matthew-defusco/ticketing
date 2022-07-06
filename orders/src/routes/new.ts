@@ -16,7 +16,7 @@ import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
-const EXPIRATION_WINDOW_SECONDS = 15 * 60;
+const EXPIRATION_WINDOW_SECONDS = 1 * 60;
 
 router.post(
   '/api/orders',
@@ -53,7 +53,7 @@ router.post(
     );
 
     // Build the order and save it to the DB
-    const order = Order.build({
+    const order = await Order.build({
       ticket,
       expiresAt: exipiration,
       status: OrderStatus.Created,

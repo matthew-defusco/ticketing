@@ -4,6 +4,7 @@ import {
   validateRequest,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError,
 } from '@mdcommon/gittix-common';
 import { body } from 'express-validator';
 
@@ -30,6 +31,11 @@ router.put(
     }
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
+    }
+    if (ticket.orderId) {
+      throw new BadRequestError(
+        'Cannot edit. This ticket is already reserved and associated with an order.'
+      );
     }
 
     ticket.set({
