@@ -13,3 +13,19 @@ A domain name will need to be purchased as well. Once that domain is procured, t
     - ns2.digitalocean.com
     - ns3.digitalocean.com
   - Add a new A record and CNAME record in Digital Ocean to configure the domain behavior.
+
+# Docker Setup
+
+Docker Desktop should be installed (but not necessary).
+
+Kubernetes should be enabled in Docker Desktop.
+
+The context for Kubernetes should be set to the Digital Ocean cluster that was created via doctl. Digital Ocean will walk you through how to create and update the context of your cluster, the command will look something like `doctl kubernetes cluster kubeconfig save <cluster name>`
+
+You should have a DockerHub account where you can push images. This will be important for the GitHub Actions that get triggered on build jobs.
+
+# GitHub Setup
+
+All of the GitHub Actions that start with 'deploy-' should be reviewed (except the manifests deployment) and updated to ensure that the correct DockerHub username is included instead of mine.
+
+There is a ticketing-common submodule that **does not** need to be included in the project. This module is stored on NPM and will be installed during the `npm install` step.
